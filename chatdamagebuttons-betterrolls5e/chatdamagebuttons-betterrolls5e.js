@@ -1,5 +1,5 @@
 /**
- * @author Felix Müller and hooking#0492
+ * @author Felix MÃ¼ller and hooking#0492
  * @version 0.1
  */
 
@@ -31,10 +31,11 @@ Hooks.on('renderChatMessage', (message, data, html) => {
         // adding click events to the buttons, this gets redone since they can break through rerendering of the card
         html.find('.dmgBtn-container-br button').click(async ev => {
             ev.stopPropagation();
+			let dmgElement = $(ev.target.parentNode.parentNode.parentNode);
             // find out the proper dmg thats supposed to be applied
-            let dmg = chatCard.find('.red-left-die').text();
-            if (chatCard.find('.red-right-die').length > 0) {
-                critDmg = chatCard.find('.red-right-die').text();
+            let dmg = dmgElement.find('.red-left-die').text();
+            if (dmgElement.find('.red-right-die').length > 0) {
+                critDmg = dmgElement.find('.red-right-die').text();
 
                 // set position on where to put the dialog
                 console.log(ev.originalEvent.screenX);
